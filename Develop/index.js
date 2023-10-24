@@ -15,11 +15,6 @@ const questions = [
   },
   {
     type: "input",
-    name: "tableOfContents",
-    message: "Enter a table of contents for the project.",
-  },
-  {
-    type: "input",
     name: "installation",
     message: "Enter installation instructions for the project.",
   },
@@ -40,7 +35,7 @@ const questions = [
   },
   {
     type: "input",
-    name: "test",
+    name: "tests",
     message: "Enter test instructions for the project.",
   },
   {
