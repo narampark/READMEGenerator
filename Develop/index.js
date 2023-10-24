@@ -1,10 +1,12 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+// function to generate license badge
 function generateLicenseBadge(license) {
-    return `![License](https://img.shields.io/badge/license-${license}-blue)`;
-  }
+  return `![License](https://img.shields.io/badge/license-${license}-blue)`;
+}
 
+// prompts given to the user
 const questions = [
   {
     type: "input",
@@ -29,7 +31,8 @@ const questions = [
   {
     type: "input",
     name: "license",
-    message: "Enter a license for the project. Use underscore instead of space. (example: MPL_2.0)",
+    message:
+      "Enter a license for the project. Use underscore instead of space. (example: MPL_2.0)",
   },
   {
     type: "input",
@@ -53,7 +56,7 @@ const questions = [
   },
 ];
 
-// TODO: Create a function to write README file
+// function to write README file
 function writeToFile(fileName, data) {
   fs.writeFile(fileName, data, (err) => {
     if (err) {
@@ -64,7 +67,7 @@ function writeToFile(fileName, data) {
   });
 }
 
-// TODO: Create a function to initialize app
+// function to initialize app
 function init() {
   inquirer.prompt(questions).then((userAnswers) => {
     const licenseBadge = generateLicenseBadge(userAnswers.license);
