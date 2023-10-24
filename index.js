@@ -2,8 +2,8 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 
 function generateLicenseBadge(license) {
-    return `![License](https://img.shields.io/badge/license-${license}-blue)`;
-  }
+  return `![License](https://img.shields.io/badge/license-${license}-blue)`;
+}
 
 const questions = [
   {
@@ -29,7 +29,8 @@ const questions = [
   {
     type: "input",
     name: "license",
-    message: "Enter a license for the project. Use underscore instead of space. (example: MPL_2.0)",
+    message:
+      "Enter a license for the project. Use underscore instead of space. (example: MPL_2.0)",
   },
   {
     type: "input",
@@ -68,38 +69,36 @@ function writeToFile(fileName, data) {
 function init() {
   inquirer.prompt(questions).then((userAnswers) => {
     const licenseBadge = generateLicenseBadge(userAnswers.license);
-    const readmeGenerated = `
-        # ${userAnswers.title}
+    const readmeGenerated = `# ${userAnswers.title}
         
-        ## Description
-        ${userAnswers.description}
+## Description
+${userAnswers.description}
         
-        ## Table of Contents
-        - [Installation](#installation)
-        - [Usage](#usage)
-        - [License](#license)
-        - [Contributors](#contributors)
-        - [Tests](#tests)
-        - [Questions](#questions)
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributors](#contributors)
+- [Tests](#tests)
+- [Questions](#questions)
 
-        ## Installation
-        ${userAnswers.installation}
+## Installation
+${userAnswers.installation}
 
-        ## Usage
-        ${userAnswers.usage}
+## Usage
+${userAnswers.usage}
 
-        ## License
-        ${licenseBadge}
+## License
+${licenseBadge}
 
-        ## Contributors
-        ${userAnswers.contributors}
+## Contributors
+${userAnswers.contributors}
 
-        ## Tests
-        ${userAnswers.tests}
+## Tests
+${userAnswers.tests}
 
-        ## Questions
-        Email any questions to ${userAnswers.email} or visit ${userAnswers.github}
-        `;
+## Questions
+Email any questions to ${userAnswers.email} or visit ${userAnswers.github}`;
     writeToFile("README.md", readmeGenerated);
   });
 }
