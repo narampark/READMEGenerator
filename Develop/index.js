@@ -35,7 +35,7 @@ const questions = [
   },
   {
     type: "input",
-    name: "contribution",
+    name: "contributions",
     message: "Enter contributions to the project.",
   },
   {
@@ -45,8 +45,13 @@ const questions = [
   },
   {
     type: "input",
-    name: "questions",
-    message: "Enter your GitHub repository and email address.",
+    name: "github",
+    message: "Enter your GitHub repository.",
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "Enter your email address.",
   },
 ];
 
@@ -62,7 +67,43 @@ function writeToFile(fileName, data) {
 }
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+  inquirer.prompt(questions).then((userAnswers) => {
+    const readmeGenerated = `
+        # ${userAnswers.title}
+        
+        ## Description
+        ${userAnswers.description}
+        
+        ## Table of Contents
+        - Installation(#installation)
+        - Usage(#usage)
+        - License(#license)
+        - Contributions(#contributions)
+        - Tests(#tests)
+        - Questions(#questions)
+
+        ## Installation
+        ${userAnswers.installation}
+
+        ## Usage
+        ${userAnswers.usage}
+
+        ## License
+        This application is covered under the ${userAnswers.license} license.
+
+        ## Contributions
+        ${userAnswers.contributions}
+
+        ## Tests
+        ${userAnswers.tests}
+
+        ## Questions
+        Email any questions to ${userAnswers.email} or visit ${userAnswers.github}
+        `;
+    writeToFile("README.md", readmeGenerated);
+  });
+}
 
 // Function call to initialize app
 init();
