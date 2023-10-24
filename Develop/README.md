@@ -2,15 +2,15 @@
         # README.md Generator
         
         ## Description
-        This application takes it user responses from a given prompt that follows the professional README guide to generate a README.md file for the user.
+        This application takes the user responses from the given prompts to generate a professional README.md file for the user.
         
         ## Table of Contents
-        - Installation(#installation)
-        - Usage(#usage)
-        - License(#license)
-        - Contributions(#contributions)
-        - Tests(#tests)
-        - Questions(#questions)
+        - [Installation](#installation)
+        - [Usage](#usage)
+        - [License](#license)
+        - [Contributors](#contributors)
+        - [Tests](#tests)
+        - [Questions](#questions)
 
         ## Installation
         In your integrated terminal type in "npm install" to download the necessary dependencies and then type in "node index" and follow the given prompts.
@@ -19,14 +19,14 @@
         Used to quickly generate a README.md file.
 
         ## License
-        This application is covered under the MIT license.
+        ![License](https://img.shields.io/badge/license-MIT-blue)
 
-        ## Contributions
+        ## Contributors
         N/A
 
         ## Tests
-        undefined
+        Once the installation process is complete and you've answered the prompts, check to make sure the README.md file was generated/updated. Check to make sure the licenses get their proper badges. Check to make sur the Table of Contents links take you to the proper sections of the README.
 
         ## Questions
-        Email any questions to narampark92@gmail.com or visit .....
+        Email any questions to narampark92@gmail.com or visit https://github.com/narampark/READMEGenerator
         
