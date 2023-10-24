@@ -1,7 +1,10 @@
-// TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
-// TODO: Create an array of questions for user input
+
+function generateLicenseBadge(license) {
+    return `![License](https://img.shields.io/badge/license-${license}-blue)`;
+  }
+
 const questions = [
   {
     type: "input",
@@ -26,12 +29,12 @@ const questions = [
   {
     type: "input",
     name: "license",
-    message: "Enter a license for the project.",
+    message: "Enter a license for the project. Use underscore instead of space. (example: MPL_2.0)",
   },
   {
     type: "input",
-    name: "contributions",
-    message: "Enter contributions to the project.",
+    name: "contributors",
+    message: "Enter contributors to the project.",
   },
   {
     type: "input",
@@ -64,6 +67,7 @@ function writeToFile(fileName, data) {
 // TODO: Create a function to initialize app
 function init() {
   inquirer.prompt(questions).then((userAnswers) => {
+    const licenseBadge = generateLicenseBadge(userAnswers.license);
     const readmeGenerated = `
         # ${userAnswers.title}
         
@@ -71,12 +75,12 @@ function init() {
         ${userAnswers.description}
         
         ## Table of Contents
-        - Installation(#installation)
-        - Usage(#usage)
-        - License(#license)
-        - Contributions(#contributions)
-        - Tests(#tests)
-        - Questions(#questions)
+        - [Installation](#installation)
+        - [Usage](#usage)
+        - [License](#license)
+        - [Contributors](#contributors)
+        - [Tests](#tests)
+        - [Questions](#questions)
 
         ## Installation
         ${userAnswers.installation}
@@ -85,10 +89,10 @@ function init() {
         ${userAnswers.usage}
 
         ## License
-        This application is covered under the ${userAnswers.license} license.
+        ${licenseBadge}
 
-        ## Contributions
-        ${userAnswers.contributions}
+        ## Contributors
+        ${userAnswers.contributors}
 
         ## Tests
         ${userAnswers.tests}
