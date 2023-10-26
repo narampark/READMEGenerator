@@ -1,9 +1,21 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+const badgeLicenses = {
+  "Apache 2.0 License": "Apache_2.0",
+  "GNU General Public License v3.0": "GPLv3",
+  "MIT License": "MIT",
+  "BSD 2-Clause License": "BSD_2--Clause",
+  "BSD 3-Clause License": "BSD_3--Clause",
+  "Boost Software 1.0 License": "Boost_1.0",
+  "Eclipse Public License 1.0": "EPL_1.0",
+  "Creative Commons Zero v1.0 Universal License": "CC0_1.0",
+};
+
 // function to generate license badge
 function generateLicenseBadge(license) {
-  return `![License](https://img.shields.io/badge/license-${license}-blue)`;
+  const badgeURL = badgeLicenses[license];
+  return `![License](https://img.shields.io/badge/License-${badgeURL}-blue.svg)`;
 }
 
 // prompts given to the user
@@ -29,10 +41,19 @@ const questions = [
     message: "Enter usage information for the project.",
   },
   {
-    type: "input",
+    type: "list",
     name: "license",
-    message:
-      "Enter a license for the project. Use underscore instead of space. (example: MPL_2.0)",
+    message: "Choose the license for the project",
+    choices: [
+      "Apache 2.0 License",
+      "GNU General Public License v3.0",
+      "MIT License",
+      "BSD 2-Clause License",
+      "BSD 3-Clause License",
+      "Boost Software 1.0 License",
+      "Creative Commons Zero v1.0 Universal License",
+      "Eclipse Public License 1.0",
+    ],
   },
   {
     type: "input",
@@ -72,6 +93,7 @@ function init() {
   inquirer.prompt(questions).then((userAnswers) => {
     const licenseBadge = generateLicenseBadge(userAnswers.license);
     const readmeGenerated = `# ${userAnswers.title}
+${licenseBadge}
         
 ## Description
 ${userAnswers.description}
@@ -91,7 +113,7 @@ ${userAnswers.installation}
 ${userAnswers.usage}
 
 ## License
-${licenseBadge}
+This project is licensed under the ${userAnswers.license}.
 
 ## Contributors
 ${userAnswers.contributors}
